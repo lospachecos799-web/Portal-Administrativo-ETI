@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Configuración de Accesos - Attendance Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#4ae176",
+                    "surface-variant": "#dce2f7",
+                    "on-tertiary-fixed": "#410001",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-surface": "#141b2b",
+                    "surface-container-high": "#e1e8fd",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#4ae176",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e9edff",
+                    "primary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#76231b",
+                    "surface-dim": "#d3daef",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary-container": "#fefcff",
+                    "inverse-surface": "#293040",
+                    "secondary-container": "#2170e4",
+                    "error": "#ba1a1a",
+                    "surface": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#d8e2ff",
+                    "outline": "#6d7b6c",
+                    "tertiary-container": "#ff8b7c",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-primary-fixed": "#002109",
+                    "on-primary-fixed-variant": "#005321",
+                    "secondary": "#0058be",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#3d4a3d",
+                    "primary-container": "#22c55e",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#004b1e",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "primary": "#006e2f",
+                    "on-secondary-fixed-variant": "#004395",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#9e4036",
+                    "outline-variant": "#bccbb9",
+                    "on-background": "#141b2b",
+                    "background": "#f9f9ff",
+                    "on-secondary-fixed": "#001a42",
+                    "surface-tint": "#006e2f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f1f3ff",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container-highest": "#dce2f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "touch-target": "56px",
+                    "stack-sm": "12px",
+                    "stack-lg": "48px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Atkinson Hyperlegible Next"],
+                    "headline-lg": ["Atkinson Hyperlegible Next"],
+                    "headline-lg-mobile": ["Atkinson Hyperlegible Next"],
+                    "body-md": ["Atkinson Hyperlegible Next"],
+                    "headline-md": ["Atkinson Hyperlegible Next"],
+                    "body-lg": ["Atkinson Hyperlegible Next"],
+                    "label-lg": ["Atkinson Hyperlegible Next"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["20px", {"lineHeight": "30px", "fontWeight": "400"}],
+                    "label-lg": ["18px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Atkinson Hyperlegible Next', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bccbb9;
+            border-radius: 10px;
+        }
+        /* Estilos específicos para los interruptores de permisos */
+        .permission-switch:checked + .switch-bg {
+            background-color: #22c55e;
+        }
+        .permission-switch:checked + .switch-bg .switch-knob {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+
+<nav class="fixed left-0 top-0 h-full w-64 bg-inverse-surface dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col py-stack-md transition-all duration-200 ease-in-out z-50">
+    <div class="px-6 mb-10 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">analytics</span>
+        </div>
+        <div>
+            <h1 class="font-headline-md text-headline-md font-bold text-inverse-on-surface dark:text-on-surface leading-tight">Attendance Admin</h1>
+            <p class="text-xs text-surface-variant opacity-70">Control System</p>
+        </div>
+    </div>
+    <ul class="flex-1 space-y-2 px-3">
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="tablero.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="font-label-lg text-label-lg">Inicio</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="personal.html">
+                <span class="material-symbols-outlined">badge</span>
+                <span class="font-label-lg text-label-lg">Personal</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="reportes.html">
+                <span class="material-symbols-outlined">assessment</span>
+                <span class="font-label-lg text-label-lg">Reportes</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed dark:text-primary-fixed-dim font-bold border-l-4 border-primary-fixed bg-surface-container-high/10 transition-all duration-200" href="configuracion.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-lg text-label-lg">Configuración</span>
+            </a>
+        </li>
+    </ul>
+    <div class="px-6 py-6 border-t border-outline-variant/20 mt-auto">
+        <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover" data-alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Gt1ctshYqDgt-gQZS850k8kSC1g2_xKsJOdlFcigcnvxO5kxNEIbwqdtU9DN0DUpoYd0DU2iVC4wkdj6jEZMrAGKa9Cl4y2vw25q5nm2YXqKwuQTqg_IW08ydXRo4tHrjLX8ePiUxvJZ3_WJhDHelcGJrlx-SyphFv08S-2qAL1OmC8UqdzV2wvKXVuKtFeKe6s0hIylJQyMw8mQ24immNr9IFA-c-6N3BSzpmoB1J7746yZ0jZdF9itQ54CdjIwaiTcbVCBFvk">
+            <div class="overflow-hidden">
+                <p class="text-on-primary font-bold truncate">Admin Profile</p>
+                <p class="text-xs text-surface-variant">System Manager</p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="fixed top-0 right-0 left-64 h-20 bg-surface dark:bg-surface-dim border-b-2 border-surface-variant dark:border-outline-variant flex items-center justify-between px-margin-desktop z-40 transition-all duration-150">
+    <div class="flex items-center gap-6 flex-1">
+        <h2 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface-variant">Configuración del Sistema</h2>
+        <div class="relative w-full max-w-md ml-8">
+            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+            <input class="w-full bg-surface-container-low border-2 border-outline-variant rounded-full py-2 pl-12 pr-4 focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200" placeholder="Buscar módulos o permisos..." type="text">
+        </div>
+    </div>
+    <div class="flex items-center gap-4">
+        <button class="p-3 text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-150 transform active:scale-95">
+            <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <button class="p-3 text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-150 transform active:scale-95">
+            <span class="material-symbols-outlined">help</span>
+        </button>
+        <button class="p-3 text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-all duration-150 transform active:scale-95">
+            <span class="material-symbols-outlined">account_circle</span>
+        </button>
+    </div>
+</header>
+
+<main class="ml-64 pt-20 px-margin-desktop pb-stack-lg min-h-screen">
+    <div class="max-w-[1200px] mx-auto pt-10 space-y-stack-lg">
+        
+        <section class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+            <div class="space-y-2">
+                <div class="flex items-center gap-2 text-primary font-label-lg mb-2">
+                    <span class="material-symbols-outlined">security</span>
+                    <span>Control de Seguridad</span>
+                </div>
+                <h3 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Gestión de Accesos y Roles</h3>
+                <p class="text-body-lg text-on-surface-variant max-w-2xl">
+                    Define los niveles de permisos y visibilidad para cada perfil de usuario dentro de la plataforma administrativa.
+                </p>
+            </div>
+            <button class="h-touch-target px-8 bg-primary-container text-on-primary-container rounded-lg font-label-lg flex items-center gap-2 hover:brightness-105 active:scale-95 transition-all shadow-sm">
+                <span class="material-symbols-outlined">add</span> Crear Nuevo Rol
+            </button>
+        </section>
+
+        <div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full border-collapse text-left">
+                    <thead>
+                        <tr class="bg-surface-container border-b border-outline-variant">
+                            <th class="p-6 font-label-lg text-on-surface-variant w-1/4 min-w-[240px]">Rol / Módulo</th>
+                            <th class="p-6 font-label-lg text-on-surface-variant text-center">Ver Dashboard</th>
+                            <th class="p-6 font-label-lg text-on-surface-variant text-center">Gestionar Personal</th>
+                            <th class="p-6 font-label-lg text-on-surface-variant text-center">Generar Reportes</th>
+                            <th class="p-6 font-label-lg text-on-surface-variant text-center">Ajustes del Sistema</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-outline-variant">
+                        <tr class="hover:bg-surface-container-low transition-colors duration-150">
+                            <td class="p-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-label-lg text-on-surface">Administrador</div>
+                                        <div class="text-label-md text-on-surface-variant font-normal">Acceso total sin restricciones</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer group">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-surface-container-low transition-colors duration-150">
+                            <td class="p-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">manage_accounts</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-label-lg text-on-surface">Directivo</div>
+                                        <div class="text-label-md text-on-surface-variant font-normal">Supervisión y visualización estratégica</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-surface-container-low transition-colors duration-150">
+                            <td class="p-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+                                        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">badge</span>
+                                    </div>
+                                    <div>
+                                        <div class="font-label-lg text-on-surface">Recursos Humanos</div>
+                                        <div class="text-label-md text-on-surface-variant font-normal">Gestión operativa del personal</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input checked="" class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                            <td class="p-6 text-center">
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input class="sr-only peer permission-switch" type="checkbox"/>
+                                    <div class="w-14 h-8 bg-outline/30 rounded-full transition-colors switch-bg relative after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border after:rounded-full after:h-6 after:w-6 after:transition-all switch-knob peer-checked:after:translate-x-full"></div>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant flex flex-col min-h-[160px] shadow-sm">
+                <span class="material-symbols-outlined text-primary text-3xl mb-4">history</span>
+                <h4 class="font-label-lg text-on-surface mb-2">Últimos Cambios</h4>
+                <p class="text-body-md text-on-surface-variant flex-grow">Admin actualizó el rol "Directivo" hace 2 horas.</p>
+            </div>
+            <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant flex flex-col min-h-[160px] shadow-sm">
+                <span class="material-symbols-outlined text-secondary text-3xl mb-4">info</span>
+                <h4 class="font-label-lg text-on-surface mb-2">Ayuda del Módulo</h4>
+                <p class="text-body-md text-on-surface-variant flex-grow">Los cambios se aplican inmediatamente a todos los usuarios activos del sistema.</p>
+            </div>
+            <div class="p-6 bg-surface-container-low rounded-xl border border-outline-variant flex flex-col min-h-[160px] shadow-sm">
+                <span class="material-symbols-outlined text-error text-3xl mb-4">warning</span>
+                <h4 class="font-label-lg text-on-surface mb-2">Seguridad</h4>
+                <p class="text-body-md text-on-surface-variant flex-grow">Se requiere autenticación de dos pasos para modificar cualquier permiso del rol Administrador.</p>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const switches = document.querySelectorAll('.permission-switch');
+        switches.forEach(sw => {
+            sw.addEventListener('change', (e) => {
+                const row = e.target.closest('tr');
+                const roleName = row.querySelector('.font-label-lg').innerText;
+                const colIndex = e.target.closest('td').cellIndex;
+                const moduleName = document.querySelector('thead th:nth-child(' + (colIndex + 1) + ')').innerText;
+                
+                // Simple toast simulation
+                const toast = document.createElement('div');
+                toast.className = 'fixed bottom-8 right-8 bg-inverse-surface text-surface px-6 py-4 rounded-lg shadow-xl z-[100] transform transition-all duration-300 translate-y-20 opacity-0 flex items-center gap-3 border border-outline';
+                toast.innerHTML = `<span class="material-symbols-outlined text-primary-fixed-dim">check_circle</span> Permiso actualizado: ${roleName} - ${moduleName}`;
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.remove('translate-y-20', 'opacity-0');
+                }, 100);
+                
+                setTimeout(() => {
+                    toast.classList.add('translate-y-20', 'opacity-0');
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            });
+        });
+    });
+</script>
+</body></html>

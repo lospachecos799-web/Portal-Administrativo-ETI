@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>E.T.I. Leonardo Infante - Control de Asistencia</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#adc6ff",
+                    "surface-container-highest": "#dce2f7",
+                    "background": "#f9f9ff",
+                    "on-error": "#ffffff",
+                    "outline": "#6d7b6c",
+                    "surface-tint": "#006e2f",
+                    "on-secondary-fixed-variant": "#004395",
+                    "on-primary-fixed-variant": "#005321",
+                    "primary-fixed-dim": "#4ae176",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#ff8b7c",
+                    "error": "#ba1a1a",
+                    "surface-container-low": "#f1f3ff",
+                    "primary-container": "#22c55e",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#002109",
+                    "surface": "#f9f9ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e1e8fd",
+                    "on-tertiary-container": "#76231b",
+                    "surface-variant": "#dce2f7",
+                    "on-secondary-container": "#fefcff",
+                    "secondary": "#0058be",
+                    "inverse-primary": "#4ae176",
+                    "surface-dim": "#d3daef",
+                    "tertiary-fixed": "#ffdad5",
+                    "primary": "#006e2f",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed": "#001a42",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "surface-bright": "#f9f9ff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#6bff8f",
+                    "surface-container": "#e9edff",
+                    "tertiary": "#9e4036",
+                    "secondary-fixed": "#d8e2ff",
+                    "outline-variant": "#bccbb9",
+                    "on-tertiary-fixed": "#410001",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-background": "#141b2b",
+                    "secondary-container": "#2170e4",
+                    "inverse-on-surface": "#edf0ff",
+                    "on-surface": "#141b2b",
+                    "on-surface-variant": "#3d4a3d",
+                    "inverse-surface": "#293040",
+                    "on-primary-container": "#004b1e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Atkinson Hyperlegible Next', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .digital-clock {
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.05em;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+<header class="w-full h-[72px] bg-surface border-b-2 border-outline-variant sticky top-0 z-50">
+    <div class="flex justify-between items-center px-6 max-w-[1200px] mx-auto w-full h-full">
+        <div class="flex items-center gap-3">
+            <span class="material-symbols-outlined text-primary text-3xl">fingerprint</span>
+            <h1 class="font-headline-md text-2xl font-bold text-on-surface">Control de Asistencia</h1>
+        </div>
+        <nav class="hidden md:flex gap-8 items-center h-full">
+            <a href="index.html" class="font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors px-4 py-2 rounded-lg active:scale-95 duration-150 inline-block">
+                Acceso Administrativo
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
+    <div class="w-full max-w-[800px] flex flex-col items-center gap-12">
+        
+        <div class="text-center space-y-2">
+            <p class="font-bold text-lg text-primary uppercase tracking-widest">E.T.I. Leonardo Infante</p>
+            <h2 class="font-bold text-4xl md:text-[56px] text-on-surface leading-tight">Registro de Jornada</h2>
+        </div>
+
+        <div class="w-full bg-white border-2 border-outline-variant rounded-[32px] p-12 text-center shadow-sm">
+            <div class="digital-clock font-bold text-on-surface md:text-[120px] text-[64px] leading-none tracking-tighter transition-all duration-300" id="clock">
+                00:00:00
+            </div>
+            <div class="text-xl text-on-surface-variant mt-3 opacity-70" id="date-display">
+                Cargando fecha...
+            </div>
+        </div>
+
+        <div class="w-full max-w-[600px] space-y-6">
+            <div class="flex flex-col gap-2">
+                <label class="font-bold text-lg text-on-surface px-2" for="cedula">Número de Cédula</label>
+                <div class="relative group">
+                    <span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant text-2xl group-focus-within:text-primary transition-colors">badge</span>
+                    <input class="w-full h-[72px] pl-16 pr-6 bg-white border-2 border-outline-variant rounded-full text-2xl focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all outline-none" id="cedula" name="cedula" placeholder="Ingrese su número de Cédula" type="text"/>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                <button class="h-[80px] bg-primary-container text-on-primary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-primary/20">
+                    <span class="material-symbols-outlined text-3xl">login</span> Registrar Entrada
+                </button>
+                <button class="h-[80px] bg-secondary-container text-on-secondary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-secondary/20">
+                    <span class="material-symbols-outlined text-3xl">logout</span> Registrar Salida
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function updateClock() {
+        const clockElement = document.getElementById('clock');
+        const dateElement = document.getElementById('date-display');
+        const now = new Date();
+        
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        
+        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const dateString = now.toLocaleDateString('es-ES', options);
+        dateElement.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    document.getElementById('cedula').addEventListener('input', function(e) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+</script>
+</body></html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Asistencia - Inicio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3d4a3d",
+                    "on-surface": "#141b2b",
+                    "surface-tint": "#006e2f",
+                    "on-secondary-fixed": "#001a42",
+                    "on-primary-fixed": "#002109",
+                    "secondary": "#0058be",
+                    "on-secondary-container": "#fefcff",
+                    "surface-variant": "#dce2f7",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#bccbb9",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#76231b",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-background": "#141b2b",
+                    "surface-container": "#e9edff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "inverse-primary": "#4ae176",
+                    "surface": "#f9f9ff",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-secondary-fixed-variant": "#004395",
+                    "primary-fixed-dim": "#4ae176",
+                    "on-primary-fixed-variant": "#005321",
+                    "surface-container-low": "#f1f3ff",
+                    "outline": "#6d7b6c",
+                    "surface-dim": "#d3daef",
+                    "primary-container": "#22c55e",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container-highest": "#dce2f7",
+                    "on-tertiary-fixed": "#410001",
+                    "background": "#f9f9ff",
+                    "secondary-container": "#2170e4",
+                    "primary": "#006e2f",
+                    "tertiary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6bff8f",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#004b1e",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "surface-container-high": "#e1e8fd",
+                    "inverse-surface": "#293040",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-container": "#ff8b7c",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "tertiary": "#9e4036",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "12px",
+                    "stack-lg": "48px",
+                    "touch-target": "56px",
+                    "margin-desktop": "48px",
+                    "margin-mobile": "16px",
+                    "stack-md": "24px",
+                    "gutter": "24px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "label-md": ["Atkinson Hyperlegible Next"],
+                    "label-lg": ["Atkinson Hyperlegible Next"],
+                    "headline-lg": ["Atkinson Hyperlegible Next"],
+                    "headline-md": ["Atkinson Hyperlegible Next"],
+                    "headline-lg-mobile": ["Atkinson Hyperlegible Next"],
+                    "body-lg": ["Atkinson Hyperlegible Next"],
+                    "body-md": ["Atkinson Hyperlegible Next"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "label-lg": ["18px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-lg": ["20px", {"lineHeight": "30px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Atkinson Hyperlegible Next', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .chart-bar-hover:hover {
+            opacity: 0.85;
+            transform: scaleY(1.02);
+            transition: all 0.2s ease;
+        }
+    </style>
+</head>
+<body class="overflow-hidden text-on-surface">
+
+<nav class="fixed left-0 top-0 h-full w-64 bg-inverse-surface dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col py-stack-md transition-all duration-200 ease-in-out z-50">
+    <div class="px-6 mb-10 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">analytics</span>
+        </div>
+        <div>
+            <h1 class="font-headline-md text-headline-md font-bold text-inverse-on-surface dark:text-on-surface leading-tight">Attendance Admin</h1>
+            <p class="text-xs text-surface-variant opacity-70">Control System</p>
+        </div>
+    </div>
+    <ul class="flex-1 space-y-2 px-3">
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed dark:text-primary-fixed-dim font-bold border-l-4 border-primary-fixed bg-surface-container-high/10 transition-all duration-200" href="tablero.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="font-label-lg text-label-lg">Inicio</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="personal.html">
+                <span class="material-symbols-outlined">badge</span>
+                <span class="font-label-lg text-label-lg">Personal</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="reportes.html">
+                <span class="material-symbols-outlined">assessment</span>
+                <span class="font-label-lg text-label-lg">Reportes</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="configuracion.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-lg text-label-lg">Configuración</span>
+            </a>
+        </li>
+    </ul>
+    <div class="px-6 py-6 border-t border-outline-variant/20 mt-auto">
+        <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover" data-alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Gt1ctshYqDgt-gQZS850k8kSC1g2_xKsJOdlFcigcnvxO5kxNEIbwqdtU9DN0DUpoYd0DU2iVC4wkdj6jEZMrAGKa9Cl4y2vw25q5nm2YXqKwuQTqg_IW08ydXRo4tHrjLX8ePiUxvJZ3_WJhDHelcGJrlx-SyphFv08S-2qAL1OmC8UqdzV2wvKXVuKtFeKe6s0hIylJQyMw8mQ24immNr9IFA-c-6N3BSzpmoB1J7746yZ0jZdF9itQ54CdjIwaiTcbVCBFvk">
+            <div class="overflow-hidden">
+                <p class="text-on-primary font-bold truncate">Admin Profile</p>
+                <p class="text-xs text-surface-variant">System Manager</p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="ml-64 min-h-screen flex flex-col">
+<header class="flex items-center justify-between w-full px-margin-desktop py-4 bg-surface border-b-2 border-surface-variant sticky top-0 z-40">
+<div class="flex-shrink-0">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Dashboard Asistencia</h2>
+</div>
+<div class="flex-grow max-w-xl mx-8">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 h-12 bg-surface-container-low border-2 border-outline-variant rounded-full font-body-md text-body-md focus:outline-none focus:border-primary transition-all" placeholder="Buscar registros o personal..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-3 hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="p-3 hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</button>
+<button class="p-3 hover:bg-surface-container-high rounded-full transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-grow p-gutter overflow-y-auto">
+<div class="max-w-[1200px] mx-auto animate-fade-in">
+<section class="bg-surface-container-lowest border-2 border-surface-variant rounded-2xl p-stack-md shadow-sm">
+<div class="flex items-center justify-between mb-stack-lg">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Métricas Estadísticas</h3>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">Resumen de asistencia semanal consolidado</p>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-primary-container/10 rounded-full">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-primary-container">Meta: 98%</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-start">
+<div class="relative h-[400px] flex flex-col justify-end px-4">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+<div class="border-b border-outline"></div>
+</div>
+<div class="flex items-end justify-around h-full gap-4 relative z-10">
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="chart-bar-hover w-full bg-primary-container rounded-t-lg" style="height: 60%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Lun</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="chart-bar-hover w-full bg-primary-container rounded-t-lg" style="height: 75%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Mar</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="chart-bar-hover w-full bg-primary-container rounded-t-lg" style="height: 90%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Mié</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full">
+<div class="chart-bar-hover w-full bg-primary-container rounded-t-lg" style="height: 70%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Jue</span>
+</div>
+<div class="flex flex-col items-center gap-4 w-full relative">
+<div class="absolute -top-12 bg-inverse-surface text-white font-label-md px-3 py-1 rounded-lg shadow-lg after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-8 after:border-x-transparent after:border-b-transparent after:border-t-inverse-surface">
+                                        145
+                                    </div>
+<div class="chart-bar-hover w-full bg-primary-container rounded-t-lg" style="height: 95%;"></div>
+<span class="font-label-md text-label-md text-on-surface-variant">Vie</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center h-full bg-surface-container-low p-6 rounded-2xl border border-surface-variant">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-6 w-full text-left">Resumen de Cumplimiento</h4>
+<div class="relative flex items-center justify-center w-64 h-64">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-highest/10" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="10"></circle>
+<circle class="text-primary-container" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="37.68" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="text-headline-lg font-bold text-on-surface">85%</span>
+<span class="text-label-md text-on-surface-variant">Asistencia</span>
+</div>
+</div>
+<div class="mt-6 grid grid-cols-2 gap-4 w-full">
+<div class="flex flex-col items-center p-3 bg-surface-container-lowest rounded-xl border border-outline-variant">
+<span class="text-label-md text-on-surface-variant">Puntualidad</span>
+<span class="text-headline-md font-bold text-primary">92%</span>
+</div>
+<div class="flex flex-col items-center p-3 bg-surface-container-lowest rounded-xl border border-outline-variant">
+<span class="text-label-md text-on-surface-variant">Justificados</span>
+<span class="text-headline-md font-bold text-secondary">78%</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="mt-stack-lg grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-6 bg-white border border-surface-variant rounded-2xl">
+<div class="flex items-center gap-4 mb-2">
+<span class="material-symbols-outlined p-2 bg-primary/10 text-primary rounded-lg" data-icon="person_check">person_check</span>
+<span class="font-label-lg text-label-lg">Presentes Hoy</span>
+</div>
+<p class="font-headline-lg text-headline-lg">1,248</p>
+<p class="text-sm text-green-600 mt-1 flex items-center">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                            +3.2% vs ayer
+                        </p>
+</div>
+<div class="p-6 bg-white border border-surface-variant rounded-2xl">
+<div class="flex items-center gap-4 mb-2">
+<span class="material-symbols-outlined p-2 bg-error/10 text-error rounded-lg" data-icon="person_off">person_off</span>
+<span class="font-label-lg text-label-lg">Ausentes</span>
+</div>
+<p class="font-headline-lg text-headline-lg">12</p>
+<p class="text-sm text-on-surface-variant mt-1">Sin justificar: 4</p>
+</div>
+<div class="p-6 bg-white border border-surface-variant rounded-2xl">
+<div class="flex items-center gap-4 mb-2">
+<span class="material-symbols-outlined p-2 bg-secondary/10 text-secondary rounded-lg" data-icon="schedule">schedule</span>
+<span class="font-label-lg text-label-lg">Retrasos</span>
+</div>
+<p class="font-headline-lg text-headline-lg">28</p>
+<p class="text-sm text-on-surface-variant mt-1">Promedio: 12 min</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+        // Simple micro-interaction for the search bar focus
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+
+        // Add reveal animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.chart-bar-hover');
+            bars.forEach((bar, index) => {
+                const originalHeight = bar.style.height;
+                bar.style.height = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'height 1s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    bar.style.height = originalHeight;
+                }, 200 + (index * 100));
+            });
+        });
+    </script>
+</body></html>

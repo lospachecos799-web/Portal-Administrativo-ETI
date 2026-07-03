@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Personal - Attendance Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#4ae176",
+                    "surface-variant": "#dce2f7",
+                    "on-tertiary-fixed": "#410001",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "tertiary-fixed": "#ffdad5",
+                    "on-surface": "#141b2b",
+                    "surface-container-high": "#e1e8fd",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#4ae176",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e9edff",
+                    "primary-fixed": "#6bff8f",
+                    "on-tertiary-container": "#76231b",
+                    "surface-dim": "#d3daef",
+                    "surface-bright": "#f9f9ff",
+                    "on-secondary-container": "#fefcff",
+                    "inverse-surface": "#293040",
+                    "secondary-container": "#2170e4",
+                    "error": "#ba1a1a",
+                    "surface": "#f9f9ff",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#d8e2ff",
+                    "outline": "#6d7b6c",
+                    "tertiary-container": "#ff8b7c",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-primary-fixed": "#002109",
+                    "on-primary-fixed-variant": "#005321",
+                    "secondary": "#0058be",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#3d4a3d",
+                    "primary-container": "#22c55e",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#004b1e",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "primary": "#006e2f",
+                    "on-secondary-fixed-variant": "#004395",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#9e4036",
+                    "outline-variant": "#bccbb9",
+                    "on-background": "#141b2b",
+                    "background": "#f9f9ff",
+                    "on-secondary-fixed": "#001a42",
+                    "surface-tint": "#006e2f",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f1f3ff",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container-highest": "#dce2f7"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "margin-desktop": "48px",
+                    "margin-mobile": "16px",
+                    "stack-sm": "12px",
+                    "unit": "8px",
+                    "touch-target": "56px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Atkinson Hyperlegible Next"],
+                    "headline-lg-mobile": ["Atkinson Hyperlegible Next"],
+                    "body-md": ["Atkinson Hyperlegible Next"],
+                    "label-md": ["Atkinson Hyperlegible Next"],
+                    "headline-lg": ["Atkinson Hyperlegible Next"],
+                    "body-lg": ["Atkinson Hyperlegible Next"],
+                    "headline-md": ["Atkinson Hyperlegible Next"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Atkinson Hyperlegible Next', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal-backdrop {
+            background-color: rgba(20, 27, 43, 0.4);
+            backdrop-filter: blur(4px);
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #bccbb9; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+
+<nav class="fixed left-0 top-0 h-full w-64 bg-inverse-surface dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline flex flex-col py-stack-md transition-all duration-200 ease-in-out z-50">
+    <div class="px-6 mb-10 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">analytics</span>
+        </div>
+        <div>
+            <h1 class="font-headline-md text-headline-md font-bold text-inverse-on-surface dark:text-on-surface leading-tight">Attendance Admin</h1>
+            <p class="text-xs text-surface-variant opacity-70">Control System</p>
+        </div>
+    </div>
+    <ul class="flex-1 space-y-2 px-3">
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="tablero.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="font-label-lg text-label-lg">Inicio</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed dark:text-primary-fixed-dim font-bold border-l-4 border-primary-fixed bg-surface-container-high/10 transition-all duration-200" href="personal.html">
+                <span class="material-symbols-outlined">badge</span>
+                <span class="font-label-lg text-label-lg">Personal</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="reportes.html">
+                <span class="material-symbols-outlined">assessment</span>
+                <span class="font-label-lg text-label-lg">Reportes</span>
+            </a>
+        </li>
+        <li class="">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant dark:text-on-surface-variant hover:bg-secondary-container dark:hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="configuracion.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-lg text-label-lg">Configuración</span>
+            </a>
+        </li>
+    </ul>
+    <div class="px-6 py-6 border-t border-outline-variant/20 mt-auto">
+        <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover" data-alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Gt1ctshYqDgt-gQZS850k8kSC1g2_xKsJOdlFcigcnvxO5kxNEIbwqdtU9DN0DUpoYd0DU2iVC4wkdj6jEZMrAGKa9Cl4y2vw25q5nm2YXqKwuQTqg_IW08ydXRo4tHrjLX8ePiUxvJZ3_WJhDHelcGJrlx-SyphFv08S-2qAL1OmC8UqdzV2wvKXVuKtFeKe6s0hIylJQyMw8mQ24immNr9IFA-c-6N3BSzpmoB1J7746yZ0jZdF9itQ54CdjIwaiTcbVCBFvk">
+            <div class="overflow-hidden">
+                <p class="text-on-primary font-bold truncate">Admin Profile</p>
+                <p class="text-xs text-surface-variant">System Manager</p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<header class="fixed top-0 left-64 right-0 bg-surface dark:bg-surface-dim border-b-2 border-surface-variant dark:border-outline-variant z-40">
+<div class="flex items-center justify-between w-full px-margin-desktop py-4">
+<div class="flex items-center gap-8 flex-1">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface-variant">Dashboard Asistencia</span>
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-12 pr-4 py-3 bg-surface-container-low border-2 border-outline-variant rounded-full focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md outline-none" placeholder="Buscar personal..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-transform scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+</button>
+<button class="p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-transform scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<button class="p-3 hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-full transition-transform scale-95 duration-150">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+
+<main class="ml-64 pt-24 min-h-screen px-margin-desktop pb-stack-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter mb-stack-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Directorio de Colaboradores</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Administra y supervisa los perfiles de todo el personal institucional.</p>
+</div>
+<button class="flex items-center gap-2 px-8 h-[64px] bg-primary-container text-on-primary-container rounded-xl font-label-lg text-label-lg hover:brightness-95 transition-all shadow-sm active:scale-95" onclick="toggleModal(true)">
+<span class="material-symbols-outlined">add</span>
+                + Agregar Nuevo Empleado
+            </button>
+</div>
+<div class="bg-surface-container-lowest border-2 border-outline-variant p-6 rounded-2xl mb-gutter">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant">person_search</span>
+<input class="w-full pl-14 pr-6 h-[56px] border-2 border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md outline-none transition-all" placeholder="Filtrar por nombre completo o número de cédula..." type="text"/>
+</div>
+</div>
+<div class="bg-surface-container-lowest border-2 border-outline-variant rounded-2xl overflow-hidden shadow-sm">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b-2 border-outline-variant bg-surface-container-low">
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface">Cédula</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface">Nombre Completo</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface">Cargo</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface">Departamento</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface">Turno</th>
+<th class="px-6 py-4 font-label-lg text-label-lg text-on-surface text-center">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container transition-colors h-[64px]">
+<td class="px-6 py-4 font-body-md text-body-md">1.234.567-8</td>
+<td class="px-6 py-4 font-label-md text-label-md">Alejandro Ramírez</td>
+<td class="px-6 py-4 font-body-md text-body-md">Docente Titular</td>
+<td class="px-6 py-4 font-body-md text-body-md">Ciencias Exactas</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-bold uppercase">Mañana</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center gap-3">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors h-[64px]">
+<td class="px-6 py-4 font-body-md text-body-md">8.765.432-1</td>
+<td class="px-6 py-4 font-label-md text-label-md">Beatriz Morales</td>
+<td class="px-6 py-4 font-body-md text-body-md">Coordinadora Académica</td>
+<td class="px-6 py-4 font-body-md text-body-md">Administración</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full text-xs font-bold uppercase">Tarde</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center gap-3">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors h-[64px]">
+<td class="px-6 py-4 font-body-md text-body-md">3.456.789-0</td>
+<td class="px-6 py-4 font-label-md text-label-md">Carlos Ortega</td>
+<td class="px-6 py-4 font-body-md text-body-md">Auxiliar Administrativo</td>
+<td class="px-6 py-4 font-body-md text-body-md">Mantenimiento</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant rounded-full text-xs font-bold uppercase">Rotativo</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center gap-3">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container transition-colors h-[64px]">
+<td class="px-6 py-4 font-body-md text-body-md">5.678.901-2</td>
+<td class="px-6 py-4 font-label-md text-label-md">Daniela Santos</td>
+<td class="px-6 py-4 font-body-md text-body-md">Docente Investigador</td>
+<td class="px-6 py-4 font-body-md text-body-md">Tecnología</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full text-xs font-bold uppercase">Mañana</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center justify-center gap-3">
+<button class="p-2 text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 text-outline hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 flex items-center justify-between bg-surface-container-low border-t border-outline-variant">
+<p class="font-label-md text-label-md text-on-surface-variant">Mostrando 4 de 128 colaboradores</p>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-bold">1</button>
+<button class="px-4 py-2 rounded-lg hover:bg-surface-container-high transition-colors">2</button>
+<button class="px-4 py-2 rounded-lg hover:bg-surface-container-high transition-colors">3</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+
+<div class="fixed inset-0 z-[60] flex items-center justify-center modal-backdrop hidden" id="employeeModal">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden border-2 border-outline-variant animate-in fade-in zoom-in duration-300">
+<div class="px-8 py-6 bg-surface-container-low flex items-center justify-between border-b border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface">Registrar Empleado</h3>
+<button class="p-2 hover:bg-surface-container-highest rounded-full transition-colors" onclick="toggleModal(false)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-8 space-y-6" onsubmit="event.preventDefault(); alert('Empleado guardado con éxito'); toggleModal(false);">
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2">Número de Cédula</label>
+<input class="w-full h-[56px] px-4 border-2 border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none font-body-md" placeholder="Ej: 1.234.567-8" type="text" required/>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2">Nombre Completo</label>
+<input class="w-full h-[56px] px-4 border-2 border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none font-body-md" placeholder="Nombre y apellidos" type="text" required/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2">Cargo</label>
+<select class="w-full h-[56px] px-4 border-2 border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none font-body-md appearance-none">
+<option>Docente</option>
+<option>Administrativo</option>
+<option>Directivo</option>
+<option>Servicios</option>
+</select>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2">Departamento</label>
+<select class="w-full h-[56px] px-4 border-2 border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none font-body-md appearance-none">
+<option>Ciencias</option>
+<option>Letras</option>
+<option>Sistemas</option>
+<option>RRHH</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-lg text-label-lg text-on-surface mb-2">Turno</label>
+<div class="flex gap-4">
+<label class="flex-1 flex items-center justify-center h-[56px] border-2 border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-container/10">
+<input checked="" class="hidden" name="turno" type="radio"/>
+<span class="font-label-md">Mañana</span>
+</label>
+<label class="flex-1 flex items-center justify-center h-[56px] border-2 border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-container/10">
+<input class="hidden" name="turno" type="radio"/>
+<span class="font-label-md">Tarde</span>
+</label>
+<label class="flex-1 flex items-center justify-center h-[56px] border-2 border-outline-variant rounded-xl cursor-pointer hover:bg-surface-container transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary-container/10">
+<input class="hidden" name="turno" type="radio"/>
+<span class="font-label-md">Rotativo</span>
+</label>
+</div>
+</div>
+<div class="pt-6 flex gap-4">
+<button class="flex-1 h-[56px] bg-surface-container-high text-on-surface font-label-lg text-label-lg rounded-xl hover:bg-surface-container-highest transition-colors" onclick="toggleModal(false)" type="button">Cancelar</button>
+<button class="flex-1 h-[56px] bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-xl hover:brightness-95 transition-all shadow-sm" type="submit">Guardar Empleado</button>
+</div>
+</form>
+</div>
+</div>
+
+<script>
+        function toggleModal(show) {
+            const modal = document.getElementById('employeeModal');
+            if (show) {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') toggleModal(false);
+        });
+
+        // Close modal if clicking outside the modal content
+        document.getElementById('employeeModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('employeeModal')) toggleModal(false);
+        });
+    </script>
+</body></html>
