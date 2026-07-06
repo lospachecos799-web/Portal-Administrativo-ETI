@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>E.T.I. Leonardo Infante - Registro y Control de Personal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3d4a3d",
+                    "on-surface": "#141b2b",
+                    "surface-tint": "#006e2f",
+                    "on-secondary-fixed": "#001a42",
+                    "on-primary-fixed": "#002109",
+                    "secondary": "#0058be",
+                    "on-secondary-container": "#fefcff",
+                    "surface-variant": "#dce2f7",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#bccbb9",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#76231b",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-background": "#141b2b",
+                    "surface-container": "#e9edff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "inverse-primary": "#4ae176",
+                    "surface": "#f9f9ff",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-secondary-fixed-variant": "#004395",
+                    "primary-fixed-dim": "#4ae176",
+                    "on-primary-fixed-variant": "#005321",
+                    "surface-container-low": "#f1f3ff",
+                    "outline": "#6d7b6c",
+                    "surface-dim": "#d3daef",
+                    "primary-container": "#22c55e",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container-highest": "#dce2f7",
+                    "background": "#f9f9ff",
+                    "secondary-container": "#2170e4",
+                    "primary": "#006e2f",
+                    "tertiary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6bff8f",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#004b1e",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "surface-container-high": "#e1e8fd",
+                    "inverse-surface": "#293040",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-container": "#ff8b7c",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "tertiary": "#9e4036",
+                    "on-error": "#ffffff"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #bccbb9; border-radius: 10px; }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden text-on-surface flex bg-background">
+
+<nav class="h-full w-64 bg-inverse-surface border-r border-outline-variant flex flex-col py-6 flex-shrink-0 z-50">
+    <div class="px-6 mb-8 flex items-center gap-3 flex-shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-white overflow-hidden flex items-center justify-center border border-outline-variant flex-shrink-0">
+            <img src="../logo_eti.png" alt="Logo E.T.I." class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-primary text-2xl\'>school</span>';">
+        </div>
+        <div class="overflow-hidden">
+            <h1 class="text-sm font-bold text-white leading-tight truncate">Portal Administrativo</h1>
+            <p class="text-[11px] text-surface-variant opacity-75 truncate">E.T.I. Leonardo Infante</p>
+        </div>
+    </div>
+    
+    <ul class="flex-1 space-y-1.5 px-3 overflow-y-auto custom-scrollbar">
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-surface-variant hover:bg-white/5 hover:text-white transition-all duration-200" href="tablero.html">
+                <span class="material-symbols-outlined text-xl">home</span>
+                <span class="text-sm font-semibold">Inicio</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl font-bold text-white bg-primary-container/20 border-l-4 border-primary transition-all duration-200" href="personal.html">
+                <span class="material-symbols-outlined text-xl">badge</span>
+                <span class="text-sm">Personal</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-surface-variant hover:bg-white/5 hover:text-white transition-all duration-200" href="reportes.html">
+                <span class="material-symbols-outlined text-xl">assessment</span>
+                <span class="text-sm font-semibold">Reportes</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-surface-variant hover:bg-white/5 hover:text-white transition-all duration-200" href="configuracion.html">
+                <span class="material-symbols-outlined text-xl">settings</span>
+                <span class="text-sm font-semibold">Configuración</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="px-4 py-4 border-t border-outline-variant/10 mt-auto flex-shrink-0">
+        <div class="flex items-center gap-3 bg-white/5 p-2.5 rounded-xl border border-white/5">
+            <img class="w-9 h-9 rounded-full border border-primary/30 object-cover flex-shrink-0" alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Gt1ctshYqDgt-gQZS850k8kSC1g2_xKsJOdlFcigcnvxO5kxNEIbwqdtU9DN0DUpoYd0DU2iVC4wkdj6jEZMrAGKa9Cl4y2vw25q5nm2YXqKwuQTqg_IW08ydXRo4tHrjLX8ePiUxvJZ3_WJhDHelcGJrlx-SyphFv08S-2qAL1OmC8UqdzV2wvKXVuKtFeKe6s0hIylJQyMw8mQ24immNr9IFA-c-6N3BSzpmoB1J7746yZ0jZdF9itQ54CdjIwaiTcbVCBFvk" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=admin';">
+            <div class="overflow-hidden">
+                <p id="txt-perfil-izq-usuario" class="text-xs font-bold text-white truncate">admin.name@escuela.edu</p>
+                <p id="txt-perfil-izq-rol" class="text-[10px] text-surface-variant opacity-80 truncate">Dirección</p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="flex-1 h-full flex flex-col overflow-hidden">
+    
+    <header class="flex items-center justify-between w-full px-8 py-4 bg-surface border-b-2 border-surface-variant z-40 flex-shrink-0">
+        <div class="flex-shrink-0">
+            <h2 class="font-headline-md text-xl font-bold text-on-surface">Registro y Control de Personal</h2>
+        </div>
+        <div class="flex-grow max-w-xl mx-8">
+            <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-4 text-outline">search</span>
+                <input id="input-buscar-global" class="w-full pl-12 pr-4 h-11 bg-surface-container-low border-2 border-outline-variant rounded-full text-sm focus:outline-none focus:border-primary transition-all" placeholder="Buscar estatus de asistencia express por C.I..." type="text"/>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <button class="p-2.5 hover:bg-surface-container-high/80 rounded-full transition-all relative group shadow-sm active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant block" data-icon="notifications">notifications</span>
+                <span id="notif-dot" class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface hidden"></span>
+            </button>
+            <button class="p-2.5 hover:bg-surface-container-high/80 rounded-full transition-all shadow-sm active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant block" data-icon="help">help</span>
+            </button>
+            <button class="p-2.5 hover:bg-surface-container-high/80 rounded-full transition-all shadow-sm active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant block" data-icon="account_circle">account_circle</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 p-8 overflow-y-auto custom-scrollbar bg-background">
+        <div class="max-w-[1500px] mx-auto space-y-6 animate-fade-in">
+            
+            <section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="space-y-1">
+                    <h3 class="text-2xl font-bold text-on-surface tracking-tight">Registro y Control de Personal</h3>
+                    <p class="text-sm text-on-surface-variant opacity-70">Administración de perfiles y asignaciones de la E.T.I. Leonardo Infante.</p>
+                </div>
+                <button id="btn-abrir-modal" class="h-12 px-6 bg-primary text-white rounded-xl font-bold text-sm flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-sm">
+                    <span class="material-symbols-outlined text-xl">add</span> Registrar Personal
+                </button>
+            </section>
+
+            <div class="bg-white border-2 border-surface-variant rounded-2xl overflow-hidden shadow-sm flex flex-col">
+                <div class="p-6 border-b-2 border-surface-variant bg-surface-container-low/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="relative flex items-center w-full max-w-xl">
+                        <span class="material-symbols-outlined absolute left-4 text-outline">search</span>
+                        <input id="input-filtrar-tabla" class="w-full pl-12 pr-4 h-11 bg-white border-2 border-outline-variant rounded-xl text-sm focus:outline-none focus:border-primary transition-all" placeholder="Buscar por cédula, nombre, apellido, cargo o departamento..." type="text"/>
+                    </div>
+                    <p id="texto-contador-empleados" class="text-xs font-bold text-on-surface-variant opacity-80">Mostrando 0 miembro(s) del personal institucional</p>
+                </div>
+
+                <div class="w-full overflow-x-hidden">
+                    <table class="w-full text-left border-collapse table-fixed">
+                        <thead>
+                            <tr class="border-b border-outline-variant bg-surface-container-low/20">
+                                <th class="w-[14%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Cédula</th>
+                                <th class="w-[16%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Nombre</th>
+                                <th class="w-[16%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Apellido</th>
+                                <th class="w-[18%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Cargo</th>
+                                <th class="w-[14%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Departamento</th>
+                                <th class="w-[10%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Turno</th>
+                                <th class="w-[12%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Estatus</th>
+                                <th class="w-[10%] px-6 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-outline-variant/40" id="tabla-empleados">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<div class="fixed inset-0 z-[60] flex items-center justify-center bg-gray-900/40 backdrop-blur-sm hidden" id="employeeModal">
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border-2 border-outline-variant transform transition-all">
+        <div class="px-6 py-4 bg-surface-container-low flex items-center justify-between border-b border-outline-variant">
+            <h3 class="text-base font-bold text-on-surface" id="modal-titulo">Registrar Personal de la E.T.I.</h3>
+            <button id="btn-cerrar-modal" class="p-1.5 hover:bg-gray-100 rounded-full transition-colors" type="button">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
+        <form class="p-6 space-y-4" id="form-empleado">
+            <div>
+                <label class="block text-xs font-bold text-on-surface mb-1.5">Número de Cédula</label>
+                <input id="form-cedula" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium" placeholder="Ej: 12345678" type="text" required/>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-on-surface mb-1.5">Primer Nombre</label>
+                    <input id="form-nombre" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium" placeholder="Nombre..." type="text" required/>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-on-surface mb-1.5">Primer Apellido</label>
+                    <input id="form-apellido" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium" placeholder="Apellido..." type="text" required/>
+                </div>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-on-surface mb-1.5">Cargo Institucional</label>
+                <input id="form-cargo" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium" placeholder="Ej: Docente Titular, Personal Directivo" type="text" required/>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-on-surface mb-1.5">Departamento Asignado</label>
+                <select id="form-departamento" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium focus:ring-0" required>
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Administración">Administración</option>
+                    <option value="Ciencias Exactas">Ciencias Exactas</option>
+                    <option value="Dirección">Dirección</option>
+                    <option value="Mantenimiento">Mantenimiento</option>
+                </select>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-xs font-bold text-on-surface mb-1.5">Turno Laboral</label>
+                    <select id="form-turno" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium focus:ring-0" required>
+                        <option value="Mañana">Mañana</option>
+                        <option value="Tarde">Tarde</option>
+                        <option value="Rotativo">Rotativo</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-on-surface mb-1.5">Estatus Operativo</label>
+                    <select id="form-estatus" class="w-full h-11 px-4 border-2 border-outline-variant rounded-xl focus:outline-none focus:border-primary text-sm font-medium focus:ring-0" required>
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="pt-2 flex gap-3">
+                <button id="btn-cancelar-form" class="flex-1 h-11 bg-gray-100 text-gray-700 font-bold text-xs rounded-xl hover:bg-gray-200 transition-colors" type="button">Cancelar</button>
+                <button class="flex-1 h-11 bg-primary text-white font-bold text-xs rounded-xl hover:brightness-110 transition-all shadow-sm" type="submit">Guardar Registro</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../js/personal.js"></script>
+</body></html>

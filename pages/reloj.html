@@ -125,39 +125,28 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                <button class="h-[80px] bg-primary-container text-on-primary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-primary/20">
-                    <span class="material-symbols-outlined text-3xl">login</span> Registrar Entrada
-                </button>
-                <button class="h-[80px] bg-secondary-container text-on-secondary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-secondary/20">
-                    <span class="material-symbols-outlined text-3xl">logout</span> Registrar Salida
-                </button>
+            <div class="flex flex-col gap-4 pt-2">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <button id="btn-entrada" class="h-[80px] bg-primary-container text-on-primary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-primary/20">
+                        <span class="material-symbols-outlined text-3xl">login</span> Registrar Entrada
+                    </button>
+                    <button id="btn-salida" class="h-[80px] bg-secondary-container text-on-secondary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-secondary/20">
+                        <span class="material-symbols-outlined text-3xl">logout</span> Registrar Salida
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                    <button id="btn-almuerzo-salida" class="h-[64px] bg-surface-container-highest text-on-surface-variant font-bold text-lg rounded-[20px] flex items-center justify-center gap-2 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-outline-variant/30">
+                        <span class="material-symbols-outlined text-2xl">restaurant</span> Salida a Almuerzo
+                    </button>
+                    <button id="btn-almuerzo-retorno" class="h-[64px] bg-surface-container-highest text-on-surface-variant font-bold text-lg rounded-[20px] flex items-center justify-center gap-2 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-outline-variant/30">
+                        <span class="material-symbols-outlined text-2xl">check_circle</span> Retorno de Almuerzo
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </main>
 
-<script>
-    function updateClock() {
-        const clockElement = document.getElementById('clock');
-        const dateElement = document.getElementById('date-display');
-        const now = new Date();
-        
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        
-        clockElement.textContent = `${hours}:${minutes}:${seconds}`;
-
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        const dateString = now.toLocaleDateString('es-ES', options);
-        dateElement.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    document.getElementById('cedula').addEventListener('input', function(e) {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-</script>
+<script src="../js/reloj.js"></script>
 </body></html>

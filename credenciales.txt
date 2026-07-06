@@ -1,2 +1,0 @@
-usuario: admin.name@escuela.edu 
-clave: admin123
