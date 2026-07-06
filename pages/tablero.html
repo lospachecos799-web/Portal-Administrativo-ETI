@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>E.T.I. Leonardo Infante - Panel de Control</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#3d4a3d",
+                    "on-surface": "#141b2b",
+                    "surface-tint": "#006e2f",
+                    "on-secondary-fixed": "#001a42",
+                    "on-primary-fixed": "#002109",
+                    "secondary": "#0058be",
+                    "on-secondary-container": "#fefcff",
+                    "surface-variant": "#dce2f7",
+                    "error": "#ba1a1a",
+                    "outline-variant": "#bccbb9",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#76231b",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "on-background": "#141b2b",
+                    "surface-container": "#e9edff",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "inverse-primary": "#4ae176",
+                    "surface": "#f9f9ff",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-secondary-fixed-variant": "#004395",
+                    "primary-fixed-dim": "#4ae176",
+                    "on-primary-fixed-variant": "#005321",
+                    "surface-container-low": "#f1f3ff",
+                    "outline": "#6d7b6c",
+                    "surface-dim": "#d3daef",
+                    "primary-container": "#22c55e",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container-highest": "#dce2f7",
+                    "on-tertiary-fixed": "#410001",
+                    "background": "#f9f9ff",
+                    "secondary-container": "#2170e4",
+                    "primary": "#006e2f",
+                    "tertiary-fixed": "#ffdad5",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6bff8f",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-container": "#004b1e",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "surface-container-high": "#e1e8fd",
+                    "inverse-surface": "#293040",
+                    "surface-bright": "#f9f9ff",
+                    "tertiary-container": "#ff8b7c",
+                    "on-tertiary-fixed-variant": "#7f2a21",
+                    "tertiary": "#9e4036",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "full": "9999px"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Atkinson Hyperlegible Next', sans-serif;
+            background-color: #f9f9ff;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-tab {
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bccbb9;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden text-on-surface flex">
+
+<nav class="h-full w-64 bg-inverse-surface border-r border-outline-variant flex flex-col py-6 flex-shrink-0 z-50">
+    <div class="px-6 mb-10 flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg bg-white overflow-hidden flex items-center justify-center border border-outline-variant flex-shrink-0">
+            <img src="../logo_eti.png" alt="Logo E.T.I." class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-primary text-2xl\'>school</span>';">
+        </div>
+        <div>
+            <h1 class="text-base font-bold text-inverse-on-surface leading-tight">Portal Administrativo</h1>
+            <p class="text-[11px] text-surface-variant opacity-70">E.T.I. Leonardo Infante</p>
+        </div>
+    </div>
+    <ul class="flex-1 space-y-2 px-3">
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary-fixed font-bold border-l-4 border-primary-fixed bg-surface-container-high/10 transition-all duration-200" href="tablero.html">
+                <span class="material-symbols-outlined">home</span>
+                <span class="text-[15px]">Inicio</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="personal.html">
+                <span class="material-symbols-outlined">badge</span>
+                <span class="text-[15px]">Personal</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="reportes.html">
+                <span class="material-symbols-outlined">assessment</span>
+                <span class="text-[15px]">Reportes</span>
+            </a>
+        </li>
+        <li>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-200" href="configuracion.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-[15px]">Configuración</span>
+            </a>
+        </li>
+    </ul>
+    <div class="px-6 py-6 border-t border-outline-variant/20 mt-auto">
+        <div class="flex items-center gap-3">
+            <img class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover" data-alt="Admin avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3Gt1ctshYqDgt-gQZS850k8kSC1g2_xKsJOdlFcigcnvxO5kxNEIbwqdtU9DN0DUpoYd0DU2iVC4wkdj6jEZMrAGKa9Cl4y2vw25q5nm2YXqKwuQTqg_IW08ydXRo4tHrjLX8ePiUxvJZ3_WJhDHelcGJrlx-SyphFv08S-2qAL1OmC8UqdzV2wvKXVuKtFeKe6s0hIylJQyMw8mQ24immNr9IFA-c-6N3BSzpmoB1J7746yZ0jZdF9itQ54CdjIwaiTcbVCBFvk" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=admin';">
+            <div class="overflow-hidden">
+                <p id="txt-perfil-izq-usuario" class="text-on-primary font-bold text-sm truncate">admin.name@escuela.edu</p>
+                <p id="txt-perfil-izq-rol" class="text-xs text-surface-variant truncate">Dirección</p>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="flex-1 h-full flex flex-col overflow-hidden">
+    
+    <header class="flex items-center justify-between w-full px-8 py-4 bg-surface border-b-2 border-surface-variant z-40 flex-shrink-0">
+        <div class="flex-shrink-0">
+            <h2 class="text-xl font-bold text-on-surface">Panel de Control - Dirección</h2>
+        </div>
+        <div class="flex-grow max-w-xl mx-8">
+            <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-4 text-outline">search</span>
+                <input id="input-buscar-global" class="w-full pl-12 pr-4 h-11 bg-surface-container-low border-2 border-outline-variant rounded-full text-sm focus:outline-none focus:border-primary transition-all" placeholder="Buscar registros o personal por C.I..." type="text"/>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-2">
+            <button class="p-2.5 hover:bg-surface-container-high/80 rounded-full transition-all relative group shadow-sm active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant block" data-icon="notifications">notifications</span>
+                <span id="notif-dot" class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full ring-2 ring-surface hidden"></span>
+            </button>
+            <button class="p-2.5 hover:bg-surface-container-high/80 rounded-full transition-all shadow-sm active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant block" data-icon="help">help</span>
+            </button>
+            <button class="p-2.5 hover:bg-surface-container-high/80 rounded-full transition-all shadow-sm active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant block" data-icon="account_circle">account_circle</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 p-8 overflow-y-auto custom-scrollbar bg-background">
+        <div class="max-w-[1500px] mx-auto space-y-6 animate-fade-in">
+            
+            <section class="bg-surface-container-lowest border-2 border-surface-variant rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h3 class="text-lg font-bold text-on-surface">Métricas Estadísticas</h3>
+                        <p class="text-xs text-on-surface-variant opacity-70">Resumen de asistencia semanal consolidado</p>
+                    </div>
+                    <div id="badge-meta" class="flex items-center gap-2 px-4 py-2 bg-primary-container/10 rounded-full transition-colors duration-300">
+                        <span id="indicador-meta" class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+                        <span id="texto-meta" class="text-xs font-bold text-primary">Meta: 98%</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                    <div class="lg:col-span-2 border-2 border-surface-variant rounded-2xl p-6 min-h-[340px] flex flex-col justify-between">
+                        
+                        <div class="flex items-end justify-around h-56 gap-4 relative mt-4">
+                            <div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-10 pb-6">
+                                <div class="border-b border-outline"></div>
+                                <div class="border-b border-outline"></div>
+                                <div class="border-b border-outline"></div>
+                                <div class="border-b border-outline"></div>
+                            </div>
+                            
+                            <div class="flex flex-col items-center justify-end h-full w-full relative group z-10">
+                                <div class="tooltip-grafica opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-white text-[11px] px-2.5 py-1 rounded-md shadow-md mb-1 pointer-events-none">0</div>
+                                <div class="chart-bar-hover w-10 bg-primary-container rounded-t-md transition-all duration-700 ease-out hover:opacity-80" style="height: 4%;"></div>
+                                <span class="text-xs font-bold text-on-surface-variant mt-2">Lun</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-end h-full w-full relative group z-10">
+                                <div class="tooltip-grafica opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-white text-[11px] px-2.5 py-1 rounded-md shadow-md mb-1 pointer-events-none">0</div>
+                                <div class="chart-bar-hover w-10 bg-primary-container rounded-t-md transition-all duration-700 ease-out hover:opacity-80" style="height: 4%;"></div>
+                                <span class="text-xs font-bold text-on-surface-variant mt-2">Mar</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-end h-full w-full relative group z-10">
+                                <div class="tooltip-grafica opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-white text-[11px] px-2.5 py-1 rounded-md shadow-md mb-1 pointer-events-none">0</div>
+                                <div class="chart-bar-hover w-10 bg-primary-container rounded-t-md transition-all duration-700 ease-out hover:opacity-80" style="height: 4%;"></div>
+                                <span class="text-xs font-bold text-on-surface-variant mt-2">Mié</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-end h-full w-full relative group z-10">
+                                <div class="tooltip-grafica opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-white text-[11px] px-2.5 py-1 rounded-md shadow-md mb-1 pointer-events-none">0</div>
+                                <div class="chart-bar-hover w-10 bg-primary-container rounded-t-md transition-all duration-700 ease-out hover:opacity-80" style="height: 4%;"></div>
+                                <span class="text-xs font-bold text-on-surface-variant mt-2">Jue</span>
+                            </div>
+                            <div class="flex flex-col items-center justify-end h-full w-full relative group z-10">
+                                <div class="tooltip-grafica opacity-0 group-hover:opacity-100 transition-opacity bg-inverse-surface text-white text-[11px] px-2.5 py-1 rounded-md shadow-md mb-1 pointer-events-none">0</div>
+                                <div class="chart-bar-hover w-10 bg-primary-container rounded-t-md transition-all duration-700 ease-out hover:opacity-80" style="height: 4%;"></div>
+                                <span class="text-xs font-bold text-on-surface-variant mt-2">Vie</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="flex flex-col items-center justify-center bg-surface-container-low p-6 rounded-2xl border-2 border-surface-variant min-h-[340px]">
+                        <h4 class="text-sm font-bold text-on-surface mb-4 w-full text-left">Resumen de Cumplimiento</h4>
+                        <div class="relative flex items-center justify-center w-44 h-44">
+                            <svg class="w-full h-full -rotate-90" viewbox="0 0 100 100">
+                                <circle class="text-surface-container-highest/20" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-width="8"></circle>
+                                <circle class="text-primary-container" cx="50" cy="50" fill="transparent" r="40" stroke="currentColor" stroke-dasharray="251.2" stroke-dashoffset="251.2" stroke-linecap="round" stroke-width="8" style="transition: stroke-dashoffset 0.8s ease;"></circle>
+                            </svg>
+                            <div class="absolute flex flex-col items-center">
+                                <span class="text-2xl font-bold text-on-surface">0%</span>
+                                <span class="text-[10px] text-on-surface-variant font-bold tracking-wider uppercase mt-1">Asistencia</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 grid grid-cols-2 gap-3 w-full">
+                            <div class="flex flex-col items-center p-2.5 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm">
+                                <span class="text-[11px] text-on-surface-variant font-semibold">Puntualidad</span>
+                                <span class="text-base font-bold text-primary mt-0.5">100%</span>
+                            </div>
+                            <div class="flex flex-col items-center p-2.5 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm">
+                                <span class="text-[11px] text-on-surface-variant font-semibold">Justificados</span>
+                                <span class="text-base font-bold text-secondary mt-0.5">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-5 bg-white border-2 border-surface-variant rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined p-2 bg-primary/10 text-primary rounded-xl">person_check</span>
+                        <span class="text-sm font-bold text-on-surface-variant">Presentes Hoy</span>
+                    </div>
+                    <p class="text-3xl font-bold text-on-surface" id="dato-presentes">0</p>
+                    <p class="text-[11px] text-green-600 font-semibold mt-2 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">trending_up</span> Sincronizado
+                    </p>
+                </div>
+                <div class="p-5 bg-white border-2 border-surface-variant rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined p-2 bg-error/10 text-error rounded-xl">person_off</span>
+                        <span class="text-sm font-bold text-on-surface-variant">Ausentes</span>
+                    </div>
+                    <p class="text-3xl font-bold text-on-surface" id="dato-ausentes">0</p>
+                    <p class="text-[11px] text-on-surface-variant font-semibold mt-2">Sin justificar: 0</p>
+                </div>
+                <div class="p-5 bg-white border-2 border-surface-variant rounded-2xl shadow-sm">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="material-symbols-outlined p-2 bg-secondary/10 text-secondary rounded-xl">schedule</span>
+                        <span class="text-sm font-bold text-on-surface-variant">Retrasos Hoy</span>
+                    </div>
+                    <p class="text-3xl font-bold text-on-surface" id="dato-retrasos">0</p>
+                    <p class="text-[11px] text-on-surface-variant font-semibold mt-2">Promedio: 0 min</p>
+                </div>
+            </section>
+
+        </div>
+    </main>
+</div>
+
+<script src="../js/tablero.js"></script>
+</body></html>
