@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html class="light" lang="es"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Configuración de Accesos - Attendance Admin</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<script id="tailwind-config">
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    
+    <!-- Título base (JavaScript inyectará dinámicamente el nombre formal y el Favicon) -->
+    <title>Portal Administrativo</title>
+    
+    <!-- Tailwind CSS & Tipografías -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -40,7 +46,6 @@
                     "on-primary-fixed": "#002109",
                     "on-primary-fixed-variant": "#005321",
                     "secondary": "#0058be",
-                    "on-secondary": "#ffffff",
                     "on-surface-variant": "#3d4a3d",
                     "primary-container": "#22c55e",
                     "on-error": "#ffffff",
@@ -81,7 +86,7 @@
         },
       }
     </script>
-<style>
+    <style>
         body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background-color: #f9f9ff; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
@@ -246,5 +251,8 @@
     </div>
 </div>
 
+<!-- Scripts centralizados -->
+<script src="../js/seguridad.js"></script>
 <script src="../js/configuracion.js"></script>
-</body></html>
+</body>
+</html>

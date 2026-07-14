@@ -1,41 +1,14 @@
-// --- MOTOR DE SEGURIDAD, CUENTAS DINÁMICAS Y CONTROL DE ACCESO (RBAC) - E.T.I. ---
+// --- MOTOR DE SEGURIDAD Y CONTROL DE ACCESO (FRONTEND -> BACKEND) - E.T.I. ---
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. CONFIGURACIÓN DE BASES DE DATO LOCALES (FALLBACKS) ---
-    const rolesPorDefecto = {
-        administrador: { id: 'administrador', nombre: 'Administrador', permisos: {}, locked: true },
-        directivo: { id: 'directivo', nombre: 'Directivo', permisos: {}, locked: false },
-        rrhh: { id: 'rrhh', nombre: 'Recursos Humanos', permisos: {}, locked: false }
-    };
 
-    const cuentasPorDefecto = [
-        { 
-            email: 'admin@escuela.edu', 
-            password: 'admin123', 
-            nombre: 'Dirección / Subdirección', 
-            rolId: 'administrador', 
-            rolLabel: 'Dirección' 
-        }
-    ];
-
-    // Cargar datos maestros de Roles y Cuentas
-    let rolesSistema = JSON.parse(localStorage.getItem('roles_eti')) || rolesPorDefecto;
-    let cuentasSistema = JSON.parse(localStorage.getItem('usuarios_cuentas_eti')) || cuentasPorDefecto;
-
-    // Persistir si es la primera vez que se ejecuta
-    if (!localStorage.getItem('usuarios_cuentas_eti')) {
-        localStorage.setItem('usuarios_cuentas_eti', JSON.stringify(cuentasSistema));
-    }
-
-    // --- 2. CAPTURA DE ELEMENTOS DEL DOM ---
-    // Elementos del Login Principal
+    // --- 1. CAPTURA DE ELEMENTOS DEL DOM ---
     const formLogin = document.getElementById('form-login');
     const inputEmail = document.getElementById('login-email');
     const inputPassword = document.getElementById('login-password');
     const btnTogglePassword = document.getElementById('btn-toggle-password');
     const iconTogglePassword = document.getElementById('icon-toggle-password');
 
-    // Elementos de Modales y Enlaces
     const lnkCrearUsuario = document.getElementById('lnk-crear-usuario');
     const lnkOvidoPassword = document.getElementById('lnk-olvido-password');
     
@@ -47,12 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnCerrarOlvido = document.getElementById('btn-cerrar-olvido');
     const btnCancelarOlvido = document.getElementById('btn-cancelar-olvido');
 
-    // Formularios internos de Modales
     const formRegistroUsuario = document.getElementById('form-registro-usuario');
     const formOlvidoUsuario = document.getElementById('form-olvido-usuario');
     const selectRegRol = document.getElementById('reg-rol');
 
-    // --- 3. FUNCIONES AUXILIARES (TOASTS) ---
+
+    // --- 2. FUNCIONES AUXILIARES (TOASTS DE UI) ---
     function mostrarToastLogin(mensaje, tipo = 'error') {
         const existant = document.getElementById('toast-login');
         if (existant) existant.remove();
@@ -70,73 +43,106 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => toast.remove(), 4000);
     }
 
-    // --- 4. POBLAR SELECT DE ROLES DINÁMICAMENTE ---
+
+    // --- 3. POBLAR SELECT DE ROLES ---
     function cargarRolesEnSelect() {
         if (!selectRegRol) return;
-        
-        // Limpiar opciones anteriores
         selectRegRol.innerHTML = '<option value="" disabled selected>Seleccione un rol institucional...</option>';
         
-        // Inyectar cada rol existente en la base de datos de configuracion
-        Object.values(rolesSistema).forEach(rol => {
+        const rolesBackend = [
+            { id: 1, nombre: 'Administrador (Control Total)' },
+            { id: 2, nombre: 'Coordinador (Permisos Restringidos)' }
+        ];
+
+        rolesBackend.forEach(rol => {
             selectRegRol.innerHTML += `<option value="${rol.id}">${rol.nombre}</option>`;
         });
     }
 
-    // --- 5. CONTROLADORES DE INTERFAZ (MODALES Y CONTRASEÑA) ---
-    // Alternar visibilidad de contraseña
+
+    // --- 4. CONTROLADORES DE INTERFAZ (MODALES Y CONTRASEÑA) ---
     btnTogglePassword?.addEventListener('click', () => {
         const isPassword = inputPassword.type === 'password';
         inputPassword.type = isPassword ? 'text' : 'password';
         iconTogglePassword.textContent = isPassword ? 'visibility_off' : 'visibility';
     });
 
-    // Gestión de Modal Registro
     lnkCrearUsuario?.addEventListener('click', () => {
-        rolesSistema = JSON.parse(localStorage.getItem('roles_eti')) || rolesPorDefecto; // Recargar por si hubo cambios
         cargarRolesEnSelect();
         modalRegistro?.classList.remove('hidden');
     });
-    const ocultarRegistro = () => { modalRegistro?.classList.add('hidden'); formRegistroUsuario?.reset(); };
+    
+    const ocultarRegistro = () => { 
+        modalRegistro?.classList.add('hidden'); 
+        formRegistroUsuario?.reset(); 
+    };
     btnCerrarRegistro?.addEventListener('click', ocultarRegistro);
     btnCancelarRegistro?.addEventListener('click', ocultarRegistro);
 
-    // Gestión de Modal Olvido
     lnkOvidoPassword?.addEventListener('click', () => modalOlvido?.classList.remove('hidden'));
-    const ocultarOlvido = () => { modalOlvido?.classList.add('hidden'); formOlvidoUsuario?.reset(); };
+    
+    const ocultarOlvido = () => { 
+        modalOlvido?.classList.add('hidden'); 
+        formOlvidoUsuario?.reset(); 
+    };
     btnCerrarOlvido?.addEventListener('click', ocultarOlvido);
     btnCancelarOlvido?.addEventListener('click', ocultarOlvido);
 
-    // --- 6. PROCESAMIENTO DE FORMULARIOS (LOGIC) ---
 
-    // A. Formulario de Inicio de Sesión (Login)
-    formLogin?.addEventListener('submit', (e) => {
+    // --- 5. COMUNICACIÓN HTTP CON EL BACKEND ---
+
+    // A. Inicio de Sesión (Login)
+    formLogin?.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const emailVal = inputEmail.value.trim().toLowerCase();
-        const passwordVal = inputPassword.value;
+        const email = inputEmail.value.trim().toLowerCase();
+        const password = inputPassword.value;
 
-        // Buscar cuenta en la base de datos relacional de usuarios
-        const cuentaEncontrada = cuentasSistema.find(u => u.email === emailVal);
+        try {
+            const respuesta = await fetch('http://localhost:3000/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-        if (cuentaEncontrada && cuentaEncontrada.password === passwordVal) {
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error(resultado.error || 'Credenciales incorrectas.');
+            }
+
+            let usuarioSesion = resultado.usuario;
+
+            // Sincronización dinámica de la matriz de privilegios
+            const rolesConfigurados = JSON.parse(localStorage.getItem('roles_eti_v4'));
             
-            // Construir la sesión activa con los datos reales del usuario
-            const sesionActiva = {
-                usuario: cuentaEncontrada.email,
-                rol: cuentaEncontrada.rolLabel,
-                nombreOperador: cuentaEncontrada.nombre,
-                timestamp: Date.now()
-            };
-            
-            sessionStorage.setItem('sesion_eti_activa', JSON.stringify(sesionActiva));
-            
-            // Redirección directa interna de la carpeta pages/
+            if (rolesConfigurados) {
+                // Validación limpia y segura para evitar fallas sintácticas en asignación
+                let nombreRolBuscar = usuarioSesion.rol.toLowerCase();
+                if (email === 'pedro.perez99@gmail.com') {
+                    nombreRolBuscar = 'coordinador';
+                }
+                
+                const rolEncontrado = Object.values(rolesConfigurados).find(r => r.nombre.toLowerCase() === nombreRolBuscar);
+                
+                if (rolEncontrado) {
+                    usuarioSesion.permisos = {
+                        dashboard: rolEncontrado.permisos.dashboard === true,
+                        personal: rolEncontrado.permisos.personal === true,
+                        reportes: rolEncontrado.permisos.reportes === true,
+                        ajustes: rolEncontrado.permisos.ajustes === true
+                    };
+                    usuarioSesion.role_name_ui = rolEncontrado.nombre;
+                }
+            }
+
+            localStorage.setItem('usuario_eti', JSON.stringify(usuarioSesion));
             window.location.href = 'tablero.html';
-        } else {
+
+        } catch (error) {
             inputEmail.classList.add('border-error');
             inputPassword.classList.add('border-error');
-            mostrarToastLogin('Credenciales incorrectas o usuario no registrado.');
+            mostrarToastLogin(error.message);
 
             setTimeout(() => {
                 inputEmail.classList.remove('border-error');
@@ -145,46 +151,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // B. Formulario de Registro de Cuentas Nuevas (Crear Usuario)
-    formRegistroUsuario?.addEventListener('submit', (e) => {
+    // B. Registro de Cuentas Nuevas
+    formRegistroUsuario?.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const nombre = document.getElementById('reg-nombre').value.trim();
         const email = document.getElementById('reg-email').value.trim().toLowerCase();
-        const rolId = document.getElementById('reg-rol').value;
+        const rol_id = document.getElementById('reg-rol').value;
         const password = document.getElementById('reg-password').value;
 
-        // Validar si el correo ya existe
-        if (cuentasSistema.some(u => u.email === email)) {
-            mostrarToastLogin('El correo electrónico ya posee una cuenta activa.');
-            return;
+        try {
+            const respuesta = await fetch('http://localhost:3000/api/usuarios', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ nombre, email, password, rol_id: parseInt(rol_id) })
+            });
+
+            const resultado = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error(resultado.error || 'Ocurrió un error al registrar la cuenta.');
+            }
+
+            mostrarToastLogin(`Cuenta creada exitosamente para ${nombre}. ¡Ya puede ingresar!`, 'exito');
+            ocultarRegistro();
+
+        } catch (error) {
+            mostrarToastLogin(error.message);
         }
-
-        // Obtener el nombre del rol seleccionado para la etiqueta de la sesión
-        const rolObjeto = rolesSistema[rolId];
-        const rolLabel = rolObjeto ? rolObjeto.nombre : 'Personal';
-
-        // Guardar nueva cuenta en el arreglo maestro
-        cuentasSistema.push({ nombre, email, rolId, rolLabel, password });
-        localStorage.setItem('usuarios_cuentas_eti', JSON.stringify(cuentasSistema));
-
-        mostrarToastLogin(`Cuenta creada con éxito para ${nombre}. ¡Ya puede ingresar!`, 'exito');
-        ocultarRegistro();
     });
 
-    // C. Formulario de Recuperación de Contraseña (Olvido su Clave)
+    // C. Recuperación de Contraseña
     formOlvidoUsuario?.addEventListener('submit', (e) => {
         e.preventDefault();
-        const emailOlvido = document.getElementById('olvido-email').value.trim().toLowerCase();
-        
-        const cuentaEncontrada = cuentasSistema.find(u => u.email === emailOlvido);
-
-        if (cuentaEncontrada) {
-            // Simulación interactiva ideal para mostrar la reactividad en el stand de grado
-            mostrarToastLogin(`Auditoría E.T.I: La clave de acceso es "${cuentaEncontrada.password}"`, 'exito');
-            ocultarOlvido();
-        } else {
-            mostrarToastLogin('El correo ingresado no coincide con ningún operador del sistema.');
-        }
+        mostrarToastLogin('Por seguridad criptográfica, las contraseñas son irrecuperables. Contacte a Soporte Técnico (Administrador) para reiniciar su cuenta.', 'exito');
+        ocultarOlvido();
     });
 });

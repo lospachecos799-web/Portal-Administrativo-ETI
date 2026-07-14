@@ -74,6 +74,64 @@ app.post('/api/personal', (req, res) => {
     });
 });
 
+// === 📝 NUEVO ENDPOINT: Modificar datos de personal existente (PUT) ===
+app.put('/api/personal/:cedula', (req, res) => {
+    const { cedula } = req.params;
+    const { nombre, apellido, cargo, departamento, turno, estatus } = req.body;
+
+    if (!nombre || !apellido || !cargo) {
+        return res.status(400).json({ error: 'Faltan datos obligatorios para actualizar el perfil.' });
+    }
+
+    const instruccionSQL = `
+        UPDATE personal 
+        SET nombre = ?, apellido = ?, cargo = ?, departamento = ?, turno = ?, estatus = ? 
+        WHERE cedula = ?
+    `;
+
+    const valorEstatus = estatus === true || estatus === 'true' || estatus === 1 ? 1 : 0;
+    const valores = [nombre, apellido, cargo, departamento, turno || 'Mañana', valorEstatus, cedula];
+
+    db.run(instruccionSQL, valores, function(err) {
+        if (err) {
+            console.error('Error al actualizar personal:', err.message);
+            return res.status(500).json({ error: 'Error interno al actualizar en la base de datos.' });
+        }
+
+        if (this.changes === 0) {
+            return res.status(404).json({ error: 'No se encontró ningún miembro del personal con la cédula especificada.' });
+        }
+
+        res.json({ mensaje: 'Perfil del personal actualizado con éxito.', cedula });
+    });
+});
+
+// === ❌ NUEVO ENDPOINT: Eliminar un registro del personal (DELETE) ===
+app.delete('/api/personal/:cedula', (req, res) => {
+    const { cedula } = req.params;
+
+    const instruccionSQL = `DELETE FROM personal WHERE cedula = ?`;
+
+    db.run(instruccionSQL, [cedula], function(err) {
+        if (err) {
+            console.error('Error al eliminar personal:', err.message);
+            // Captura si se viola la integridad referencial (ej: si el personal ya tiene asistencias grabadas)
+            if (err.message.includes('FOREIGN KEY')) {
+                return res.status(409).json({ 
+                    error: 'No se puede eliminar este registro porque posee un historial de asistencias vinculado en el sistema.' 
+                });
+            }
+            return res.status(500).json({ error: 'Error interno al intentar remover el registro de la base de datos.' });
+        }
+
+        if (this.changes === 0) {
+            return res.status(404).json({ error: 'No se encontró ningún registro coincidente con esa cédula.' });
+        }
+
+        res.json({ mensaje: 'Registro de personal eliminado exitosamente del archivo central.' });
+    });
+});
+
 // === Endpoint: Registrar Asistencia (Reloj) ===
 app.post('/api/asistencia', (req, res) => {
     const { cedula, tipo_movimiento } = req.body;

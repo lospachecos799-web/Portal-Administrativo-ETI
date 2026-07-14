@@ -1,14 +1,22 @@
 <!DOCTYPE html>
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>E.T.I. Leonardo Infante - Gestión de Reportes</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
-<script id="tailwind-config">
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    
+    <!-- Título base (JavaScript centralizado inyectará dinámicamente el nombre formal y el Favicon) -->
+    <title>Portal Administrativo</title>
+    
+    <!-- Tailwind CSS & Tipografías -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Motores de PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.29/jspdf.plugin.autotable.min.js"></script>
+    
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -65,7 +73,7 @@
         },
       }
     </script>
-<style>
+    <style>
         body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background-color: #f9f9ff; }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -222,17 +230,15 @@
                             </div>
                         </div>
 
-                        <div class="w-full overflow-x-hidden">
-                            <table class="w-full text-left border-collapse table-fixed">
+                        <!-- 🗂️ TABLA CON TIMELINE FLOW NATIVO EN JAVASCRIPT -->
+                        <div class="w-full overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-left border-collapse table-fixed min-w-[900px]">
                                 <thead>
                                     <tr class="border-b border-outline-variant bg-surface-container-low/20">
-                                        <th class="w-[28%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Colaborador</th>
-                                        <th class="w-[10%] px-3 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Fecha</th>
-                                        <th class="w-[13%] px-3 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Entrada</th>
-                                        <th class="w-[13%] px-3 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Salida Almuerzo</th>
-                                        <th class="w-[13%] px-3 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Retorno Almuerzo</th>
-                                        <th class="w-[11%] px-3 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Salida</th>
-                                        <th class="w-[12%] px-6 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Estatus</th>
+                                        <th class="w-[25%] px-6 py-4.5 font-bold text-xs text-on-surface uppercase tracking-wider">Colaborador</th>
+                                        <th class="w-[11%] px-3 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Fecha</th>
+                                        <th class="w-[48%] px-6 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Flujo de Jornada Laboral</th>
+                                        <th class="w-[16%] px-6 py-4.5 font-bold text-xs text-on-surface text-center uppercase tracking-wider">Estatus</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-outline-variant/40" id="tabla-registros"></tbody>
@@ -246,5 +252,8 @@
     </main>
 </div>
 
+<!-- Scripts unificados -->
+<script src="../js/seguridad.js"></script>
 <script src="../js/reportes.js"></script>
-</body></html>
+</body>
+</html>

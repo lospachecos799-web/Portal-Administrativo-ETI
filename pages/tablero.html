@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html class="light" lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>E.T.I. Leonardo Infante - Panel de Control</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    
+    <!-- Título base (JavaScript inyectará dinámicamente el nombre formal y el Favicon) -->
+    <title>Portal Administrativo</title>
+    
+    <!-- Tailwind CSS & Tipografías -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
         theme: {
@@ -71,7 +77,7 @@
         },
       }
     </script>
-<style>
+    <style>
         body {
             font-family: 'Atkinson Hyperlegible Next', sans-serif;
             background-color: #f9f9ff;
@@ -102,7 +108,7 @@
             <img src="../logo_eti.png" alt="Logo E.T.I." class="w-full h-full object-contain" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'material-symbols-outlined text-primary text-2xl\'>school</span>';">
         </div>
         <div>
-            <h1 class="text-base font-bold text-inverse-on-surface leading-tight">Portal Administrativo</h1>
+            <h1 class="text-base font-bold text-inverse-on-surface leading-tight">Portal Administrative</h1>
             <p class="text-[11px] text-surface-variant opacity-70">E.T.I. Leonardo Infante</p>
         </div>
     </div>
@@ -284,5 +290,8 @@
     </main>
 </div>
 
+<!-- Scripts centralizados -->
+<script src="../js/seguridad.js"></script>
 <script src="../js/tablero.js"></script>
-</body></html>
+</body>
+</html>

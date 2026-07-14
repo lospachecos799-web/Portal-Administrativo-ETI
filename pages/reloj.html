@@ -12,76 +12,33 @@
         theme: {
           extend: {
             "colors": {
-                    "secondary-fixed-dim": "#adc6ff",
-                    "surface-container-highest": "#dce2f7",
-                    "background": "#f9f9ff",
-                    "on-error": "#ffffff",
-                    "outline": "#6d7b6c",
-                    "surface-tint": "#006e2f",
-                    "on-secondary-fixed-variant": "#004395",
-                    "on-primary-fixed-variant": "#005321",
-                    "primary-fixed-dim": "#4ae176",
-                    "surface-container-lowest": "#ffffff",
-                    "tertiary-container": "#ff8b7c",
+                    "surface-variant": "#dce2f7",
                     "error": "#ba1a1a",
+                    "outline-variant": "#bccbb9",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#141b2b",
                     "surface-container-low": "#f1f3ff",
                     "primary-container": "#22c55e",
-                    "on-secondary": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "on-primary-fixed": "#002109",
-                    "surface": "#f9f9ff",
-                    "on-tertiary": "#ffffff",
-                    "surface-container-high": "#e1e8fd",
-                    "on-tertiary-container": "#76231b",
-                    "surface-variant": "#dce2f7",
-                    "on-secondary-container": "#fefcff",
-                    "secondary": "#0058be",
-                    "inverse-primary": "#4ae176",
-                    "surface-dim": "#d3daef",
-                    "tertiary-fixed": "#ffdad5",
-                    "primary": "#006e2f",
-                    "on-error-container": "#93000a",
-                    "on-secondary-fixed": "#001a42",
-                    "on-tertiary-fixed-variant": "#7f2a21",
-                    "surface-bright": "#f9f9ff",
-                    "error-container": "#ffdad6",
-                    "primary-fixed": "#6bff8f",
-                    "surface-container": "#e9edff",
-                    "tertiary": "#9e4036",
-                    "secondary-fixed": "#d8e2ff",
-                    "outline-variant": "#bccbb9",
-                    "on-tertiary-fixed": "#410001",
-                    "tertiary-fixed-dim": "#ffb4a9",
-                    "on-background": "#141b2b",
+                    "surface-container-highest": "#dce2f7",
+                    "background": "#f9f9ff",
                     "secondary-container": "#2170e4",
-                    "inverse-on-surface": "#edf0ff",
-                    "on-surface": "#141b2b",
-                    "on-surface-variant": "#3d4a3d",
+                    "primary": "#006e2f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#e1e8fd",
                     "inverse-surface": "#293040",
-                    "on-primary-container": "#004b1e"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
+                    "surface-bright": "#f9f9ff",
             }
           },
         },
       }
     </script>
 <style>
-        body {
-            font-family: 'Atkinson Hyperlegible Next', sans-serif;
-            background-color: #f9f9ff;
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .digital-clock {
-            font-variant-numeric: tabular-nums;
-            letter-spacing: -0.05em;
-        }
+        body { font-family: 'Atkinson Hyperlegible Next', sans-serif; background-color: #f9f9ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .digital-clock { font-variant-numeric: tabular-nums; letter-spacing: -0.05em; }
+        /* Estilos para el teclado numérico */
+        .numpad-btn { transition: all 0.1s; }
+        .numpad-btn:active { transform: scale(0.95); background-color: #dce2f7; }
     </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -89,64 +46,76 @@
     <div class="flex justify-between items-center px-6 max-w-[1200px] mx-auto w-full h-full">
         <div class="flex items-center gap-3">
             <span class="material-symbols-outlined text-primary text-3xl">fingerprint</span>
-            <h1 class="font-headline-md text-2xl font-bold text-on-surface">Control de Asistencia</h1>
+            <h1 class="text-2xl font-bold text-on-surface">Terminal Biométrico</h1>
         </div>
         <nav class="hidden md:flex gap-8 items-center h-full">
-            <a href="index.html" class="font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors px-4 py-2 rounded-lg active:scale-95 duration-150 inline-block">
-                Acceso Administrativo
+            <a href="index.html" class="font-bold text-on-surface hover:bg-surface-container-low transition-colors px-4 py-2 rounded-lg border border-outline-variant active:scale-95 duration-150 inline-block shadow-sm">
+                Administración Escolar
             </a>
         </nav>
     </div>
 </header>
 
-<main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
-    <div class="w-full max-w-[800px] flex flex-col items-center gap-12">
+<main class="flex-grow flex flex-col items-center justify-center px-4 py-8">
+    <div class="w-full max-w-[1000px] flex flex-col lg:flex-row items-center gap-12">
         
-        <div class="text-center space-y-2">
-            <p class="font-bold text-lg text-primary uppercase tracking-widest">E.T.I. Leonardo Infante</p>
-            <h2 class="font-bold text-4xl md:text-[56px] text-on-surface leading-tight">Registro de Jornada</h2>
+        <!-- SECCIÓN IZQUIERDA: Reloj y estatus -->
+        <div class="w-full lg:w-1/2 flex flex-col items-center gap-6">
+            <div class="text-center space-y-2">
+                <p class="font-bold text-lg text-primary uppercase tracking-widest">E.T.I. Leonardo Infante</p>
+                <h2 class="font-bold text-4xl text-on-surface leading-tight">Control de Asistencia</h2>
+            </div>
+
+            <div class="w-full bg-white border-2 border-outline-variant rounded-[32px] p-8 text-center shadow-sm">
+                <div class="digital-clock font-bold text-on-surface text-[64px] md:text-[80px] leading-none tracking-tighter" id="clock">
+                    00:00:00
+                </div>
+                <div class="text-xl text-on-surface mt-3 opacity-80 font-semibold" id="date-display">
+                    Cargando fecha...
+                </div>
+            </div>
+            
+            <div id="mensaje-feedback" class="w-full text-center py-4 px-6 rounded-2xl font-bold text-lg hidden transition-all duration-300">
+                <!-- Aquí aparecerá el feedback visual dinámico -->
+            </div>
         </div>
 
-        <div class="w-full bg-white border-2 border-outline-variant rounded-[32px] p-12 text-center shadow-sm">
-            <div class="digital-clock font-bold text-on-surface md:text-[120px] text-[64px] leading-none tracking-tighter transition-all duration-300" id="clock">
-                00:00:00
-            </div>
-            <div class="text-xl text-on-surface-variant mt-3 opacity-70" id="date-display">
-                Cargando fecha...
-            </div>
-        </div>
-
-        <div class="w-full max-w-[600px] space-y-6">
-            <div class="flex flex-col gap-2">
-                <label class="font-bold text-lg text-on-surface px-2" for="cedula">Número de Cédula</label>
+        <!-- SECCIÓN DERECHA: Teclado interactivo y campo de cédula -->
+        <div class="w-full lg:w-1/2 max-w-[450px] bg-white border-2 border-outline-variant rounded-[32px] p-8 shadow-sm">
+            <div class="flex flex-col gap-2 mb-6">
+                <label class="font-bold text-sm text-on-surface px-2 text-center" for="cedula">INGRESE SU CÉDULA DE IDENTIDAD</label>
                 <div class="relative group">
-                    <span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant text-2xl group-focus-within:text-primary transition-colors">badge</span>
-                    <input class="w-full h-[72px] pl-16 pr-6 bg-white border-2 border-outline-variant rounded-full text-2xl focus:ring-4 focus:ring-secondary/20 focus:border-secondary transition-all outline-none" id="cedula" name="cedula" placeholder="Ingrese su número de Cédula" type="text"/>
+                    <span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-on-surface text-3xl transition-colors">badge</span>
+                    <input class="w-full h-[80px] pl-16 pr-6 bg-surface-container-low border-2 border-outline-variant rounded-2xl text-4xl font-bold text-center tracking-widest focus:ring-4 focus:ring-primary/20 focus:border-primary transition-all outline-none text-on-surface" id="cedula" name="cedula" type="text" readonly placeholder="---"/>
                 </div>
             </div>
 
-            <div class="flex flex-col gap-4 pt-2">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <button id="btn-entrada" class="h-[80px] bg-primary-container text-on-primary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-primary/20">
-                        <span class="material-symbols-outlined text-3xl">login</span> Registrar Entrada
-                    </button>
-                    <button id="btn-salida" class="h-[80px] bg-secondary-container text-on-secondary-container font-bold text-xl rounded-[24px] flex items-center justify-center gap-3 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-secondary/20">
-                        <span class="material-symbols-outlined text-3xl">logout</span> Registrar Salida
-                    </button>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                    <button id="btn-almuerzo-salida" class="h-[64px] bg-surface-container-highest text-on-surface-variant font-bold text-lg rounded-[20px] flex items-center justify-center gap-2 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-outline-variant/30">
-                        <span class="material-symbols-outlined text-2xl">restaurant</span> Salida a Almuerzo
-                    </button>
-                    <button id="btn-almuerzo-retorno" class="h-[64px] bg-surface-container-highest text-on-surface-variant font-bold text-lg rounded-[20px] flex items-center justify-center gap-2 hover:brightness-105 active:scale-[0.98] transition-all border-b-4 border-outline-variant/30">
-                        <span class="material-symbols-outlined text-2xl">check_circle</span> Retorno de Almuerzo
-                    </button>
-                </div>
+            <!-- Teclado Numérico en Pantalla -->
+            <div class="grid grid-cols-3 gap-3 mb-6">
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('1')">1</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('2')">2</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('3')">3</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('4')">4</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('5')">5</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('6')">6</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('7')">7</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('8')">8</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('9')">9</button>
+                <button class="numpad-btn h-16 bg-error/10 border-2 border-error/20 rounded-xl text-error font-bold" onclick="limpiarCedula()">C</button>
+                <button class="numpad-btn h-16 bg-surface-container-low border-2 border-outline-variant rounded-xl text-2xl font-bold text-on-surface" onclick="agregarNumero('0')">0</button>
+                <button class="numpad-btn h-16 bg-surface-variant border-2 border-outline-variant rounded-xl text-on-surface flex items-center justify-center" onclick="borrarNumero()">
+                    <span class="material-symbols-outlined text-3xl">backspace</span>
+                </button>
             </div>
+
+            <button id="btn-marcar" class="w-full h-[80px] bg-primary text-white font-bold text-2xl rounded-2xl flex items-center justify-center gap-3 hover:brightness-110 active:scale-[0.98] transition-all shadow-md">
+                <span class="material-symbols-outlined text-4xl">touch_app</span> MARCAR ASISTENCIA
+            </button>
         </div>
     </div>
 </main>
 
+<!-- Scripts unificados al final del archivo reloj.html -->
+<script src="../js/seguridad.js"></script>
 <script src="../js/reloj.js"></script>
 </body></html>
